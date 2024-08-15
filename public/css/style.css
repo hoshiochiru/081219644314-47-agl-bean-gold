@@ -1,0 +1,22 @@
+.product-img{
+    width: 8em;
+}
+.order-qty-btn{
+    height:2em;
+    width: 3em;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.order-summary-card{
+    min-height:20em;
+}
+.dim-img{
+    filter: brightness(50%)
+}
+
+.avatar-img{
+    width: 9em;
+}

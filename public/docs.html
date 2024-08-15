@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bean Coffee</title>
+    <link rel="shortcut icon" href="/img/logo.svg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/img/logo.svg" sizes="180x180">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand d-md-none" href="/">
+                <img src="/img/logo.svg" alt="Bean Logo" height="30">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+                aria-controls="offcanvas" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+                <div class="offcanvas-header">
+                    <img src="/img/logo.svg" alt="Bean Logo" height="30">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav flex-grow-1 justify-content-between align-items-center">
+                        <li class="nav-ite flex-grow-1 d-none d-md-block"><a class="nav-link" href="/">
+                                <img src="/img/logo.svg" alt="Bean Logo" height="30">
+                            </a></li>
+                        <li class="nav-item flex-grow-1"><a class="nav-link" href="/">
+                                Home
+                            </a></li>
+                        <li class="nav-item flex-grow-1"><a class="nav-link" href="/docs">
+                                API
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container w-100 my-5">
+        <div class="p-5 bg-light">
+            <section id="overview">
+                <h1>API Docs</h1>
+                <p>This is the overview of the API. Provide a general description of what your API does and any
+                    important information that users need to know to get started.</p>
+            </section>
+
+            <hr>
+
+            <section id="endpoints">
+                <div id="getProduct" class="my-2">
+                    <h3>GET /product</h3>
+                    <p>Returns a list of products.</p>
+                    <pre class="bg-secondary-subtle p-2"><code>GET /api/product</code></pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ul>
+                        <li><strong>none</strong></li>
+                    </ul>
+                    <p><strong>Return:</strong></p>
+                    <pre class="bg-secondary-subtle p-2"><code>[
+    {
+        "id": 1,
+        "name": "americano",
+        "price": 50000
+    }
+]</code></pre>
+                </div>
+
+                <div id="postProduct" class="my-2">
+                    <h3>POST /product</h3>
+                    <p>Create new product</p>
+                    <pre class="bg-secondary-subtle p-2"><code>POST /api/product</code></pre>
+                    <p><strong>Body:</strong></p>
+                    <ul>
+                        <li><strong>name</strong> string (required) - product name</li>
+                        <li><strong>price</strong> integer (required) - product price</li>
+                    </ul>
+                    <pre class="bg-secondary-subtle p-2"><code>{
+    "name": "macha",
+    "price": 100000
+}</code></pre>
+                    <p><strong>Return:</strong></p>
+                    <pre class="bg-secondary-subtle p-2"><code>{
+    "productid": 7
+}</code></pre>
+                </div>
+                <div id="patchProduct" class="my-2">
+                    <h3>PATCH /product/:productid</h3>
+                    <p>Update a product</p>
+                    <pre class="bg-secondary-subtle p-2"><code>PATCH /api/product/:productid</code></pre>
+                    <p><strong>Parameter:</strong></p>
+                    <ul>
+                        <li><strong>productid</strong> (required) - Product ID</li>
+                    </ul>
+                    <p><strong>Body:</strong></p>
+                    <ul>
+                        <li><strong>name</strong> string (optional) - new product name</li>
+                        <li><strong>price</strong> integer (optional) - new product price</li>
+                    </ul>
+                    <pre class="bg-secondary-subtle p-2">
+<code>{
+    "name": "matcha",
+    "price": 100000
+}</code></pre>
+                    <p><strong>Return:</strong></p>
+                    <pre class="bg-secondary-subtle p-2"><code>{
+    "result": "Success"
+}</code></pre>
+                </div>
+
+                <div id="deleteProduct" class="my-2">
+                    <h3>DELETE /product</h3>
+                    <p>Delete a product.</p>
+                    <pre class="bg-secondary-subtle p-2"><code>DELETE /api/product/:productid</code></pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ul>
+                        <li><strong>orderid</strong> (required) - Product ID</li>
+                    </ul>
+                    <p><strong>Return:</strong></p>
+                    <pre class="bg-secondary-subtle p-2"><code>{
+    "message": "success"
+}</code></pre>
+                </div>
+
+                <div id="getOrderAll" class="my-2">
+                    <h3>GET /order</h3>
+                    <p>Returns a list of orders.</p>
+                    <pre class="bg-secondary-subtle p-2"><code>GET /api/order</code></pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ul>
+                        <li><strong>none</strong></li>
+                    </ul>
+                    <p><strong>Return:</strong></p>
+                    <pre class="bg-secondary-subtle p-2"><code>[
+    {
+        "id": 10,
+        "name": "john",
+        "phone": "012345678",
+        "order_date": "2024-08-14T04:39:22.129Z",
+        "progress": 25,
+        "description": "Order received",
+        "total": 250000,
+        "orders": [
+            {
+                "id": 2,
+                "name": "macchiato",
+                "price": 30000,
+                "quantity": 2
+            },
+            {
+                "id": 3,
+                "name": "latte",
+                "price": 40000,
+                "quantity": 4
+            },
+            {
+                "id": 5,
+                "name": "mocha",
+                "price": 10000,
+                "quantity": 3
+            }
+        ]
+    }
+]</code></pre>
+                </div>
+                <div id="getOrder" class="my-2">
+                    <h3>GET /order/:orderid</h3>
+                    <p>Returns order details</p>
+                    <pre class="bg-secondary-subtle p-2"><code>GET /api/order/:orderid</code></pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ul>
+                        <li><strong>orderid</strong> (required) - Order ID</li>
+                    </ul>
+                    <p><strong>Return:</strong></p>
+                    <pre class="bg-secondary-subtle p-2"><code>{
+    "id": 11,
+    "name": "john",
+    "phone": "01234534545",
+    "order_date": "2024-08-14T05:43:51.369Z",
+    "progress": 75,
+    "description": "Ready for collection",
+    "total": 215000,
+    "orders": [
+        {
+            "id": 1,
+            "name": "americano",
+            "price": 50000,
+            "quantity": 2
+        },
+        {
+            "id": 2,
+            "name": "macchiato",
+            "price": 30000,
+            "quantity": 3
+        }
+    ]
+}</code></pre>
+                </div>
+                <div id="postOrder" class="my-2">
+                    <h3>POST /order</h3>
+                    <p>Create a new order</p>
+                    <pre class="bg-secondary-subtle p-2"><code>POST /api/order</code></pre>
+                    <p><strong>Body:</strong></p>
+                    <ul>
+                        <li><strong>name</strong> string (required) - customer name</li>
+                        <li><strong>phone</strong> string (required) - customer phone number</li>
+                        <li><strong>orders</strong> array (required) - array of order object:</li>
+                        <ul>
+                            <li><strong>id</strong> integer - product id (see GET /product)</li>
+                            <li><strong>quantity</strong> integer - product order quantity</li>
+                        </ul>
+                    </ul>
+                    <pre class="bg-secondary-subtle p-2">
+<code>{
+    "name": "john",
+    "phone": "0123123123",
+    "orders": [
+        {
+            "id": 1,
+            "quantity": 4
+        },
+        {
+            "id": 3,
+            "quantity": 5
+        }
+    ]
+}</code></pre>
+                    <p><strong>Return:</strong></p>
+                    <pre class="bg-secondary-subtle p-2"><code>{
+    "orderid": 14
+}</code></pre>
+                </div>
+                <div id="patchOrder" class="my-2">
+                    <h3>PATCH /order/:orderid</h3>
+                    <p>Update an order</p>
+                    <pre class="bg-secondary-subtle p-2"><code>PATCH /api/order/:orderid</code></pre>
+                    <p><strong>Parameter:</strong></p>
+                    <ul>
+                        <li><strong>orderid</strong> (required) - Order ID</li>
+                    </ul>
+                    <p><strong>Body:</strong></p>
+                    <ul>
+                        <li><strong>status</strong> integer (optional) - new order status (see GET /status)</li>
+                        <li><strong>orders</strong> array (optional) - array of order object:</li>
+                        <ul>
+                            <li><strong>id</strong> integer - product id (see GET /product)</li>
+                            <li><strong>quantity</strong> integer - new product order quantity</li>
+                        </ul>
+                    </ul>
+                    <pre class="bg-secondary-subtle p-2">
+<code>{
+    "status": 3,
+    "orders": [
+        {
+            "id": 3,
+            "quantity": 0
+        }
+    ]
+}</code></pre>
+                    <p><strong>Return:</strong></p>
+                    <pre class="bg-secondary-subtle p-2"><code>{
+    "result": "Success"
+}</code></pre>
+                </div>
+                <div id="deleteOrder" class="my-2">
+                    <h3>DELETE /order/:orderid</h3>
+                    <p>Delete an order</p>
+                    <pre class="bg-secondary-subtle p-2"><code>DELETE /api/order/:orderid</code></pre>
+                    <p><strong>Parameter:</strong></p>
+                    <ul>
+                        <li><strong>orderid</strong> (required) - Order ID</li>
+                    </ul>
+                    <p><strong>Return:</strong></p>
+                    <pre class="bg-secondary-subtle p-2"><code>{
+    "result": "Success"
+}</code></pre>
+                </div>
+
+                <div id="getStatus" class="my-2">
+                    <h3>GET /status</h3>
+                    <p>Returns a list of status dictionary.</p>
+                    <pre class="bg-secondary-subtle p-2"><code>GET /api/status</code></pre>
+                    <p><strong>Parameters:</strong></p>
+                    <ul>
+                        <li><strong>none</strong></li>
+                    </ul>
+                    <p><strong>Return:</strong></p>
+                    <pre class="bg-secondary-subtle p-2"><code>[
+    {
+        "id": 1,
+        "progress": 25,
+        "description": "Order received"
+    },
+    {
+        "id": 2,
+        "progress": 50,
+        "description": "Preparing order"
+    },
+    {
+        "id": 3,
+        "progress": 75,
+        "description": "Ready for collection"
+    },
+    {
+        "id": 4,
+        "progress": 100,
+        "description": "Order finished"
+    },
+    {
+        "id": 5,
+        "progress": 0,
+        "description": "Order Canceled"
+    }
+]</code></pre>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer class="container d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">© 2024 Bean, Inc</p>
+
+        <a href="/"
+            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <img src="/img/logo-black.svg" alt="Bean logo" width="30">
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="/api" class="nav-link px-2 text-body-secondary">API</a></li>
+        </ul>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
