@@ -124,7 +124,6 @@ router.get('/order/:orderid', async (req, res) => {
 
 router.post('/order/', async (req, res) => {
     const { name, phone, orders } = req.body
-
     try {
         let result = await client.query('INSERT INTO orders(name, phone, status) VALUES($1, $2, $3) RETURNING id', [name, phone, 1]);
         const orderid = result.rows[0].id
@@ -134,7 +133,7 @@ router.post('/order/', async (req, res) => {
         console.log(`New Order Created, Name: ${name}, Phone ${phone}, Order ID ${orderid}`)
         res.send({ orderid: orderid })
     } catch (err) {
-        console.error(`Post Order Error, Order ID: ${orderid}, error: ${err.message}`)
+        console.error(`Post Order Error, error: ${err.message}`)
         res.status(400).send({ error: err.message })
     }
 })
@@ -162,7 +161,7 @@ router.patch('/order/:orderid', async (req, res) => {
             }
         }
         console.log(`Patch Order Success, Order ID: ${orderid}`)
-        res.send({ result: 'Success' })
+        res.send({ orderid: orderid, result: 'Success' })
     } catch (err) {
         console.error(`Patch Order Error, Order ID: ${orderid}, error: ${err.message}`)
         res.status(400).send({ error: err.message })
